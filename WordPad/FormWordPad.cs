@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WordPad
 {
-    public partial class Form1 : Form
+    public partial class FormWordPad : Form
     {
-        public Form1()
+        public FormWordPad()
         {
             InitializeComponent();
+        }
+
+        private void FormWordPad_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
