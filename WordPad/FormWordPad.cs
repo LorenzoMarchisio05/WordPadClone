@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordPad.Controllers;
@@ -61,6 +62,38 @@ namespace WordPad
             {
                 SaveHandler();
             }
+        }
+
+        private void ResearchHandler()
+        {
+            string searchedText = cercaToolStripTextBox.Text.ToLower();
+            string whereToSearch = Regex.Replace(rtbTesto.Text, @"\W", " ").ToLower();
+            int startIndex = 0;
+
+            IEnumerable<string> matchingWords = whereToSearch
+                .Split(' ')
+                .Where(word => word == searchedText);
+
+            foreach (string word in matchingWords)
+            {
+                int wordIndex = rtbTesto.Text.IndexOf(word, startIndex);
+
+                rtbTesto.Select(wordIndex, word.Length);
+                rtbTesto.SelectionColor = Color.Yellow;
+
+                startIndex = wordIndex + word.Length;
+            }
+        }
+
+        private void ReplaceHandler()
+        {
+            rtbTesto.Text = rtbTesto.Text
+                .ToLower()
+                .Replace(
+                    cercaToolStripTextBox.Text
+                    .ToLower(), 
+                    rimpiazzaToolStripTextBox.Text
+                    );
         }
 
         private void FormWordPad_Load(object sender, EventArgs e)
@@ -146,6 +179,15 @@ namespace WordPad
             }
         }
 
-       
+
+        private void cercaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResearchHandler();
+        }
+
+        private void rimpiazzaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReplaceHandler();
+        }
     }
 }
