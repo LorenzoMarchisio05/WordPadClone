@@ -18,7 +18,7 @@ namespace WordPad
         public FormWordPad()
         {
             InitializeComponent();
-
+            
             _wordPadController = new WordPadController();
         }
 
@@ -50,7 +50,7 @@ namespace WordPad
         {
             if (_wordPadController.DiscardChanges())
             {
-                rtbTesto.Text = "";
+                rtbTesto.Clear();
             }
             else
             {
@@ -62,6 +62,7 @@ namespace WordPad
         {
             allineamentoToolStripComboBox.SelectedIndex = 0;
         }
+
 
         private void nuovoToolStripMenuItem_Click(object sender, EventArgs e) => NewDocumentHandler();
 
@@ -87,5 +88,32 @@ namespace WordPad
         private void copiaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Copy();
 
         private void incollaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Paste();
+
+        private void informazionisuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
+
+        private void annullaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Undo();
+
+
+        private void ripristinaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Redo();
+
+        private void coloreTestoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_wordPadController.SelectColor(out Color color))
+            {
+                rtbTesto.ForeColor = color;
+            }
+        }
+
+        private void fontTestoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_wordPadController.SelectFont(out Font font))
+            {
+                rtbTesto.Font = font;
+            }
+        }
     }
 }

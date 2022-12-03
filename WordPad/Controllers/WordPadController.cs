@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,22 @@ namespace WordPad.Controllers
     public sealed class WordPadController
     {
         public bool Modificato { get; set; }
+
+        public bool SelectColor(out Color color)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            DialogResult res = colorDialog.ShowDialog();
+            color = colorDialog.Color;
+            return res == DialogResult.OK;
+        }
+
+        public bool SelectFont(out Font color)
+        {
+            FontDialog colorDialog = new FontDialog();
+            DialogResult res = colorDialog.ShowDialog();
+            color = colorDialog.Font;
+            return res == DialogResult.OK;
+        }
 
         public bool DiscardChanges()
         {

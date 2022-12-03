@@ -56,13 +56,15 @@
             this.strumentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizzaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opzioniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sommarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allineamentoToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.informazionisuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allineamentoToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.labekAllineamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.coloreTestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontTestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,7 +199,12 @@
             this.incollaToolStripMenuItem,
             this.toolStripSeparator4,
             this.selezionatuttoToolStripMenuItem,
-            this.allineamentoToolStripComboBox});
+            this.toolStripSeparator6,
+            this.labekAllineamentoToolStripMenuItem,
+            this.allineamentoToolStripComboBox,
+            this.toolStripSeparator7,
+            this.coloreTestoToolStripMenuItem,
+            this.fontTestoToolStripMenuItem});
             this.modificaToolStripMenuItem.Name = "modificaToolStripMenuItem";
             this.modificaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.modificaToolStripMenuItem.Text = "&Modifica";
@@ -208,6 +215,7 @@
             this.annullaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.annullaToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.annullaToolStripMenuItem.Text = "&Annulla";
+            this.annullaToolStripMenuItem.Click += new System.EventHandler(this.annullaToolStripMenuItem_Click);
             // 
             // ripristinaToolStripMenuItem
             // 
@@ -215,6 +223,7 @@
             this.ripristinaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.ripristinaToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.ripristinaToolStripMenuItem.Text = "&Ripristina";
+            this.ripristinaToolStripMenuItem.Click += new System.EventHandler(this.ripristinaToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -275,55 +284,14 @@
             // personalizzaToolStripMenuItem
             // 
             this.personalizzaToolStripMenuItem.Name = "personalizzaToolStripMenuItem";
-            this.personalizzaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.personalizzaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.personalizzaToolStripMenuItem.Text = "&Personalizza";
             // 
             // opzioniToolStripMenuItem
             // 
             this.opzioniToolStripMenuItem.Name = "opzioniToolStripMenuItem";
-            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.opzioniToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.opzioniToolStripMenuItem.Text = "&Opzioni";
-            // 
-            // ToolStripMenuItem
-            // 
-            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sommarioToolStripMenuItem,
-            this.indiceToolStripMenuItem,
-            this.cercaToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.informazionisuToolStripMenuItem});
-            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(24, 20);
-            this.ToolStripMenuItem.Text = "&?";
-            // 
-            // sommarioToolStripMenuItem
-            // 
-            this.sommarioToolStripMenuItem.Name = "sommarioToolStripMenuItem";
-            this.sommarioToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.sommarioToolStripMenuItem.Text = "&Sommario";
-            // 
-            // indiceToolStripMenuItem
-            // 
-            this.indiceToolStripMenuItem.Name = "indiceToolStripMenuItem";
-            this.indiceToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.indiceToolStripMenuItem.Text = "&Indice";
-            // 
-            // cercaToolStripMenuItem
-            // 
-            this.cercaToolStripMenuItem.Name = "cercaToolStripMenuItem";
-            this.cercaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.cercaToolStripMenuItem.Text = "&Cerca";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
-            // 
-            // informazionisuToolStripMenuItem
-            // 
-            this.informazionisuToolStripMenuItem.Name = "informazionisuToolStripMenuItem";
-            this.informazionisuToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.informazionisuToolStripMenuItem.Text = "&Informazioni su...";
             // 
             // allineamentoToolStripComboBox
             // 
@@ -335,6 +303,57 @@
             this.allineamentoToolStripComboBox.Name = "allineamentoToolStripComboBox";
             this.allineamentoToolStripComboBox.Size = new System.Drawing.Size(121, 23);
             this.allineamentoToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.AllineamentoToolStripComboBox_SelectedIndexChanged);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // informazionisuToolStripMenuItem
+            // 
+            this.informazionisuToolStripMenuItem.Name = "informazionisuToolStripMenuItem";
+            this.informazionisuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.informazionisuToolStripMenuItem.Text = "&Informazioni su...";
+            this.informazionisuToolStripMenuItem.Click += new System.EventHandler(this.informazionisuToolStripMenuItem_Click);
+            // 
+            // ToolStripMenuItem
+            // 
+            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator5,
+            this.informazionisuToolStripMenuItem});
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(24, 20);
+            this.ToolStripMenuItem.Text = "&?";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(178, 6);
+            // 
+            // labekAllineamentoToolStripMenuItem
+            // 
+            this.labekAllineamentoToolStripMenuItem.Name = "labekAllineamentoToolStripMenuItem";
+            this.labekAllineamentoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.labekAllineamentoToolStripMenuItem.Text = "Allineamento:";
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(178, 6);
+            // 
+            // coloreTestoToolStripMenuItem
+            // 
+            this.coloreTestoToolStripMenuItem.Name = "coloreTestoToolStripMenuItem";
+            this.coloreTestoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.coloreTestoToolStripMenuItem.Text = "Colore Testo";
+            this.coloreTestoToolStripMenuItem.Click += new System.EventHandler(this.coloreTestoToolStripMenuItem_Click);
+            // 
+            // fontTestoToolStripMenuItem
+            // 
+            this.fontTestoToolStripMenuItem.Name = "fontTestoToolStripMenuItem";
+            this.fontTestoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.fontTestoToolStripMenuItem.Text = "Font Testo";
+            this.fontTestoToolStripMenuItem.Click += new System.EventHandler(this.fontTestoToolStripMenuItem_Click);
             // 
             // FormWordPad
             // 
@@ -381,13 +400,15 @@
         private System.Windows.Forms.ToolStripMenuItem strumentiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personalizzaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opzioniToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox allineamentoToolStripComboBox;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sommarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem indiceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cercaToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem informazionisuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripComboBox allineamentoToolStripComboBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem labekAllineamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem coloreTestoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fontTestoToolStripMenuItem;
     }
 }
 
