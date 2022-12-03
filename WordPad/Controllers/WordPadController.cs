@@ -10,7 +10,7 @@ namespace WordPad.Controllers
 {
     public sealed class WordPadController
     {
-        public bool Modificato { get; set; }
+        public bool Modificato { get; set; } = false;
 
         public bool SelectColor(out Color color)
         {

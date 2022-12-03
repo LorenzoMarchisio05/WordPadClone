@@ -14,7 +14,11 @@ namespace WordPad
     public partial class FormWordPad : Form
     {
 
+        private const int LIST_INDENTATION = 10;
+
+
         private readonly WordPadController _wordPadController;
+
         public FormWordPad()
         {
             InitializeComponent();
@@ -51,6 +55,7 @@ namespace WordPad
             if (_wordPadController.DiscardChanges())
             {
                 rtbTesto.Clear();
+                _wordPadController.Modificato = false;
             }
             else
             {
@@ -61,8 +66,9 @@ namespace WordPad
         private void FormWordPad_Load(object sender, EventArgs e)
         {
             allineamentoToolStripComboBox.SelectedIndex = 0;
-        }
 
+            rtbTesto.BulletIndent = LIST_INDENTATION;
+        }
 
         private void nuovoToolStripMenuItem_Click(object sender, EventArgs e) => NewDocumentHandler();
 
@@ -115,5 +121,31 @@ namespace WordPad
                 rtbTesto.Font = font;
             }
         }
+
+        private void elencoPuntatoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbTesto.SelectionBullet = true;
+        }
+
+        private void elencoNumeratoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+
+        private void esciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
+        private void FormWordPad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_wordPadController.Modificato && !_wordPadController.DiscardChanges())
+            {
+                SaveHandler();
+            }
+        }
+
+       
     }
 }
