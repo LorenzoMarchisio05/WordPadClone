@@ -60,7 +60,7 @@ namespace WordPad
 
         private void FormWordPad_Load(object sender, EventArgs e)
         {
-
+            allineamentoToolStripComboBox.SelectedIndex = 0;
         }
 
         private void nuovoToolStripMenuItem_Click(object sender, EventArgs e) => NewDocumentHandler();
@@ -73,5 +73,19 @@ namespace WordPad
         private void salvaconnomeToolStripMenuItem_Click(object sender, EventArgs e) => SaveHandler();
 
         private void rtbTesto_TextChanged(object sender, EventArgs e) => _wordPadController.Modificato = true;
+
+        private void AllineamentoToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rtbTesto.SelectAll();
+            rtbTesto.SelectionAlignment = (HorizontalAlignment)allineamentoToolStripComboBox.SelectedIndex;
+        }
+
+        private void selezionatuttoToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.SelectAll();
+
+        private void tagliaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Cut();
+
+        private void copiaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Copy();
+
+        private void incollaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Paste();
     }
 }
