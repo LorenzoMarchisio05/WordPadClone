@@ -19,12 +19,14 @@ namespace WordPad
 
 
         private readonly WordPadController _wordPadController;
+        private readonly clsStampa _printer;
 
         public FormWordPad()
         {
             InitializeComponent();
             
             _wordPadController = new WordPadController();
+            _printer = new clsStampa();
         }
 
         private void SaveHandler()
@@ -190,6 +192,16 @@ namespace WordPad
         private void rimpiazzaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReplaceHandler();
+        }
+
+        private void stampaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _printer.Stampa(rtbTesto.Text, null);
+        }
+
+        private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _printer.Anteprima(rtbTesto.Text, null);
         }
     }
 }

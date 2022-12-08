@@ -177,6 +177,7 @@
             this.stampaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.stampaToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.stampaToolStripMenuItem.Text = "&Stampa";
+            this.stampaToolStripMenuItem.Click += new System.EventHandler(this.stampaToolStripMenuItem_Click);
             // 
             // anteprimadistampaToolStripMenuItem
             // 
@@ -185,6 +186,7 @@
             this.anteprimadistampaToolStripMenuItem.Name = "anteprimadistampaToolStripMenuItem";
             this.anteprimadistampaToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.anteprimadistampaToolStripMenuItem.Text = "&Anteprima di stampa";
+            this.anteprimadistampaToolStripMenuItem.Click += new System.EventHandler(this.anteprimadistampaToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 

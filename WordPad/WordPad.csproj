@@ -59,6 +59,7 @@
     <Compile Include="FormWordPad.Designer.cs">
       <DependentUpon>FormWordPad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Printer\clsStampa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
@@ -89,6 +90,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
