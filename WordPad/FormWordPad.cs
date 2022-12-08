@@ -97,6 +97,10 @@ namespace WordPad
                     rimpiazzaToolStripTextBox.Text
                     );
         }
+        
+        private void NumberedListHandler()
+        {
+        }
 
         private void FormWordPad_Load(object sender, EventArgs e)
         {
@@ -130,11 +134,7 @@ namespace WordPad
 
         private void incollaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Paste();
 
-        private void informazionisuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBox aboutBox = new AboutBox();
-            aboutBox.ShowDialog();
-        }
+        private void informazionisuToolStripMenuItem_Click(object sender, EventArgs e) => new AboutBox().ShowDialog();
 
         private void annullaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Undo();
 
@@ -165,43 +165,26 @@ namespace WordPad
         private void elencoNumeratoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TODO
-        }
-
-
-        private void esciToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            NumberedListHandler();
         }
         
+        private void esciToolStripMenuItem_Click(object sender, EventArgs e) => this.Close();
+
         private void FormWordPad_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(_wordPadController.Modificato && !_wordPadController.DiscardChanges())
             {
                 SaveHandler();
             }
-
-
         }
 
 
-        private void cercaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ResearchHandler();
-        }
+        private void cercaToolStripMenuItem_Click(object sender, EventArgs e) => ResearchHandler();
 
-        private void rimpiazzaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ReplaceHandler();
-        }
+        private void rimpiazzaToolStripMenuItem_Click(object sender, EventArgs e) => ReplaceHandler();
 
-        private void stampaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _printer.Stampa(rtbTesto.Text, null);
-        }
+        private void stampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Stampa(rtbTesto.Text, null);
 
-        private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _printer.Anteprima(rtbTesto.Text, null);
-        }
+        private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Anteprima(rtbTesto.Text, null);
     }
 }
