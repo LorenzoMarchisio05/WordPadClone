@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordPad.Controllers;
+using WordPad.Validators;
 
 namespace WordPad
 {
@@ -29,11 +30,21 @@ namespace WordPad
             _printer = new clsStampa();
         }
 
+        private void FileNameChangedHandler(string fileName)
+        {
+            if(fileName.Contains('\\'))
+            {
+                fileName = fileName.Substring(fileName.LastIndexOf('\\')+1);
+            }
+            this.Text = $"Wordpad Clone - {fileName}";
+        }
+
         private void SaveHandler()
         {
             if (_wordPadController.SaveAs(out string fileName))
             {
                 rtbTesto.SaveFile(fileName);
+                FileNameChangedHandler(fileName);
             }
             else
             {
@@ -46,6 +57,7 @@ namespace WordPad
             if (_wordPadController.Open(out string fileName))
             {
                 rtbTesto.LoadFile(fileName);
+                FileNameChangedHandler(fileName);
             }
             else
             {
@@ -59,6 +71,7 @@ namespace WordPad
             {
                 rtbTesto.Clear();
                 _wordPadController.Modificato = false;
+                FileNameChangedHandler("senza nome");
             }
             else
             {
@@ -81,7 +94,7 @@ namespace WordPad
                 int wordIndex = rtbTesto.Text.IndexOf(word, startIndex);
 
                 rtbTesto.Select(wordIndex, word.Length);
-                rtbTesto.SelectionColor = Color.Yellow;
+                rtbTesto.SelectionColor = Color.Red;
 
                 startIndex = wordIndex + word.Length;
             }
@@ -100,6 +113,59 @@ namespace WordPad
         
         private void NumberedListHandler()
         {
+            string text;
+
+            int indexFirstChar = rtbTesto.GetFirstCharIndexOfCurrentLine();
+
+            int lineIndex = rtbTesto.GetLineFromCharIndex(indexFirstChar);
+
+            string selectedText = rtbTesto.SelectedText.Trim();
+
+            
+            try
+            {
+                string[] righe = selectedText == "" ?
+                new string[] { rtbTesto.Lines[lineIndex] } :
+                selectedText.Split('\n');
+                text = _wordPadController.getNumberedListFormattedText(rtbTesto.Text, righe);
+            }
+            catch (Exception)
+            {
+                text = "1. ";
+            }
+
+            rtbTesto.Text = text;
+            rtbTesto.Select(rtbTesto.Text.Length, 0);
+        }
+
+
+        private void KeyPressHandler(Keys key)
+        {
+            try
+            {
+                if (key == Keys.Return)
+                {
+                    int lineIndex = rtbTesto.GetLineFromCharIndex(rtbTesto.GetFirstCharIndexOfCurrentLine())-1;
+                    string line = rtbTesto.Lines[lineIndex];
+
+                    if (NumberedRowsValidator.Validate(line))
+                    {
+                        return;
+                    }
+
+                    if(line.EndsWith(". "))
+                    {
+                        return;
+                    }
+
+                    int numero = int.Parse(line.Substring(0, line.IndexOf('.')));
+                    rtbTesto.AppendText($"{numero + 1}. ");
+                }
+            }
+            catch (Exception)
+            {
+            }
+            
         }
 
         private void FormWordPad_Load(object sender, EventArgs e)
@@ -107,6 +173,12 @@ namespace WordPad
             allineamentoToolStripComboBox.SelectedIndex = 0;
 
             rtbTesto.BulletIndent = LIST_INDENTATION;
+
+            _wordPadController.Modificato = false;
+
+            rtbTesto.Font = new Font("arial", 9.5f);
+
+            NewDocumentHandler();
         }
 
         private void nuovoToolStripMenuItem_Click(object sender, EventArgs e) => NewDocumentHandler();
@@ -145,7 +217,7 @@ namespace WordPad
         {
             if(_wordPadController.SelectColor(out Color color))
             {
-                rtbTesto.ForeColor = color;
+                rtbTesto.SelectionColor = color;
             }
         }
 
@@ -153,13 +225,13 @@ namespace WordPad
         {
             if (_wordPadController.SelectFont(out Font font))
             {
-                rtbTesto.Font = font;
+                rtbTesto.SelectionFont = font;
             }
         }
 
         private void elencoPuntatoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            rtbTesto.SelectionBullet = true;
+            rtbTesto.SelectionBullet = !rtbTesto.SelectionBullet;
         }
 
         private void elencoNumeratoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,5 +258,7 @@ namespace WordPad
         private void stampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Stampa(rtbTesto.Text, null);
 
         private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Anteprima(rtbTesto.Text, null);
+
+        private void rtbTesto_KeyUp(object sender, KeyEventArgs e) => KeyPressHandler(e.KeyCode);
     }
 }

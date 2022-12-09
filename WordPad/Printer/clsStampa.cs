@@ -50,7 +50,6 @@ namespace WordPad
             // imposto parametri di default
             initDefaultParameters();
 
-            _printDocument.PrintPage += printDocument_PrintPage;
         }
 
         public void ImpostaPagina()
@@ -78,40 +77,8 @@ namespace WordPad
             _userFont = font ?? DefaultFont;
 
             // L'utente può decidere se stampare o annullare
-            if (_printPreviewDialog.ShowDialog() == DialogResult.OK)
-            {
-                _printDocument.Print();
-            }
-        }
-
-
-        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            /*
-             * la ppagina di stampa è vista come un oggetto grafico 
-             * sul quale posso agire con le GDI+
-             */
-
-            SolidBrush brush = new SolidBrush(Color.Black);
-
-            int left = _printDocument.DefaultPageSettings.Margins.Left;
-            int top = _printDocument.DefaultPageSettings.Margins.Top;
-            int width = _printDocument.DefaultPageSettings.PaperSize.Width;
-            int height = _printDocument.DefaultPageSettings.PaperSize.Height;
-
-            Rectangle rectangle = new Rectangle(
-                left,
-                top,
-                width,
-                height
-                );
-
-            e.Graphics.DrawString(_userText, _userFont, brush, rectangle);
-
-            // per disegnare il rettangolo 
-            Pen pen = new Pen(Color.Red, 2);
-            e.Graphics.DrawRectangle(pen, rectangle);
-
+             _printDocument.Print();
+            
         }
 
 

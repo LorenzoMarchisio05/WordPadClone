@@ -66,8 +66,8 @@
             this.cercaToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.cercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.rimpiazzaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rimpiazzaToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.rimpiazzaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.informazionisuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +90,7 @@
             this.rtbTesto.TabIndex = 3;
             this.rtbTesto.Text = "";
             this.rtbTesto.TextChanged += new System.EventHandler(this.rtbTesto_TextChanged);
+            this.rtbTesto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rtbTesto_KeyUp);
             // 
             // menuStrip1
             // 
@@ -343,21 +344,21 @@
             // elencoPuntatoToolStripMenuItem
             // 
             this.elencoPuntatoToolStripMenuItem.Name = "elencoPuntatoToolStripMenuItem";
-            this.elencoPuntatoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.elencoPuntatoToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.elencoPuntatoToolStripMenuItem.Text = "Elenco Puntato";
             this.elencoPuntatoToolStripMenuItem.Click += new System.EventHandler(this.elencoPuntatoToolStripMenuItem_Click);
             // 
             // elencoNumeratoToolStripMenuItem
             // 
             this.elencoNumeratoToolStripMenuItem.Name = "elencoNumeratoToolStripMenuItem";
-            this.elencoNumeratoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.elencoNumeratoToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.elencoNumeratoToolStripMenuItem.Text = "Elenco Numerato";
             this.elencoNumeratoToolStripMenuItem.Click += new System.EventHandler(this.elencoNumeratoToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(204, 6);
             // 
             // cercaToolStripTextBox
             // 
@@ -369,21 +370,14 @@
             // cercaToolStripMenuItem
             // 
             this.cercaToolStripMenuItem.Name = "cercaToolStripMenuItem";
-            this.cercaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cercaToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.cercaToolStripMenuItem.Text = "Cerca";
             this.cercaToolStripMenuItem.Click += new System.EventHandler(this.cercaToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(221, 6);
-            // 
-            // rimpiazzaToolStripMenuItem
-            // 
-            this.rimpiazzaToolStripMenuItem.Name = "rimpiazzaToolStripMenuItem";
-            this.rimpiazzaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.rimpiazzaToolStripMenuItem.Text = "Rimpiazza";
-            this.rimpiazzaToolStripMenuItem.Click += new System.EventHandler(this.rimpiazzaToolStripMenuItem_Click);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(204, 6);
             // 
             // rimpiazzaToolStripTextBox
             // 
@@ -391,6 +385,13 @@
             this.rimpiazzaToolStripTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.rimpiazzaToolStripTextBox.Name = "rimpiazzaToolStripTextBox";
             this.rimpiazzaToolStripTextBox.Size = new System.Drawing.Size(100, 27);
+            // 
+            // rimpiazzaToolStripMenuItem
+            // 
+            this.rimpiazzaToolStripMenuItem.Name = "rimpiazzaToolStripMenuItem";
+            this.rimpiazzaToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.rimpiazzaToolStripMenuItem.Text = "Rimpiazza";
+            this.rimpiazzaToolStripMenuItem.Click += new System.EventHandler(this.rimpiazzaToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem
             // 

@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordPad.Validators;
 
 namespace WordPad.Controllers
 {
     public sealed class WordPadController
     {
-        public bool Modificato { get; set; } = false;
+        public bool Modificato { get; set; }
 
         public bool SelectColor(out Color color)
         {
@@ -45,12 +46,6 @@ namespace WordPad.Controllers
 
         public bool SaveAs(out string fileName)
         {
-            if (!Modificato)
-            {
-                fileName = "";
-                return false;
-            }
-
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "WordPad - Salva File";
             saveFileDialog.Filter = "Data Filses (*.rtf)|*.rtf";
@@ -85,6 +80,37 @@ namespace WordPad.Controllers
         {
             Modificato = false;
             return $"{GetDefaultFolderPath()}\\senza nome.rtf";
+        }
+
+        public string getNumberedListFormattedText(string source, string[] righe)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            string returnedText = source;
+            string joinedRows = string.Join("", righe).Trim();
+
+            for (int i = 0; i < righe.Length; i++)
+            {
+                if (NumberedRowsValidator.Validate(righe[i]))
+                {
+                    stringBuilder
+                    .Append($"{i + 1}. ")
+                    .Append(righe[i])
+                    .Append("\n");
+                }
+            }
+
+            if(joinedRows == "")
+            {
+                returnedText = $"{source}1. ";
+            }
+            else if(stringBuilder.Length > 0 )
+            {
+                string newText = stringBuilder.ToString().Substring(0, stringBuilder.Length - 1);
+                returnedText = source.Replace(joinedRows, newText);
+            }
+
+            return returnedText;
         }
 
         private string GetDefaultFolderPath() => Environment
