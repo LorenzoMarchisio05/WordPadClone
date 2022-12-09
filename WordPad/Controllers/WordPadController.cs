@@ -15,18 +15,38 @@ namespace WordPad.Controllers
 
         public bool SelectColor(out Color color)
         {
-            ColorDialog colorDialog = new ColorDialog();
-            DialogResult res = colorDialog.ShowDialog();
-            color = colorDialog.Color;
-            return res == DialogResult.OK;
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                DialogResult res = colorDialog.ShowDialog();
+                color = colorDialog.Color;
+                return res == DialogResult.OK;
+            }
         }
 
         public bool SelectFont(out Font color)
         {
-            FontDialog colorDialog = new FontDialog();
-            DialogResult res = colorDialog.ShowDialog();
-            color = colorDialog.Font;
-            return res == DialogResult.OK;
+            using(FontDialog colorDialog = new FontDialog())
+            {
+                DialogResult res = colorDialog.ShowDialog();
+                color = colorDialog.Font;
+                return res == DialogResult.OK;
+            }
+        }
+
+        public bool SelectImage()
+        {
+            using(OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona Immagine";
+                openFileDialog.Multiselect = false;
+                openFileDialog.Filter = "Image|*.png;*.jpeg;*.jpg";
+                DialogResult res;
+                if(( res = openFileDialog.ShowDialog()) == DialogResult.OK)
+                {
+                    Clipboard.SetImage(Image.FromFile(openFileDialog.FileName));
+                }
+                return res == DialogResult.OK;
+            }
         }
 
         public bool DiscardChanges()
@@ -46,34 +66,38 @@ namespace WordPad.Controllers
 
         public bool SaveAs(out string fileName)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Title = "WordPad - Salva File";
-            saveFileDialog.Filter = "Data Filses (*.rtf)|*.rtf";
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.InitialDirectory = GetDefaultFolderPath();
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "WordPad - Salva File";
+                saveFileDialog.Filter = "Data Filses (*.rtf)|*.rtf";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.InitialDirectory = GetDefaultFolderPath();
 
-            fileName = saveFileDialog.ShowDialog() == DialogResult.OK ?
-                saveFileDialog.FileName :
-                "";
+                fileName = saveFileDialog.ShowDialog() == DialogResult.OK ?
+                    saveFileDialog.FileName :
+                    "";
 
-            Modificato = fileName == "";
+                Modificato = fileName == "";
 
-            return fileName != "";
+                return fileName != "";
+            }
         }
 
         public bool Open(out string fileName)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Title = "WordPad - Salva File";
-            saveFileDialog.Filter = "Data Filses (*.rtf)|*.rtf";
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.InitialDirectory = GetDefaultFolderPath();
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "WordPad - Salva File";
+                saveFileDialog.Filter = "Data Filses (*.rtf)|*.rtf";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.InitialDirectory = GetDefaultFolderPath();
 
-            fileName = saveFileDialog.ShowDialog() == DialogResult.OK ?
-                saveFileDialog.FileName :
-                "";
+                fileName = saveFileDialog.ShowDialog() == DialogResult.OK ?
+                    saveFileDialog.FileName :
+                    "";
 
-            return fileName != "";
+                return fileName != "";
+            }
         }
 
         public string GetDefaultFileSavePath()

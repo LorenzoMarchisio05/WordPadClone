@@ -260,5 +260,14 @@ namespace WordPad
         private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Anteprima(rtbTesto.Text, null);
 
         private void rtbTesto_KeyUp(object sender, KeyEventArgs e) => KeyPressHandler(e.KeyCode);
+
+        private void immagineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_wordPadController.SelectImage())
+            {
+                rtbTesto.Paste();
+                Clipboard.Clear();
+            }
+        }
     }
 }
