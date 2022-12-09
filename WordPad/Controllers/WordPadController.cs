@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordPad.Validators;
@@ -106,7 +107,7 @@ namespace WordPad.Controllers
             return $"{GetDefaultFolderPath()}\\senza nome.rtf";
         }
 
-        public string getNumberedListFormattedText(string source, string[] righe)
+        public string getNumberedListFormattedText(string source, string[] righe, int charsFromStart)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -131,10 +132,22 @@ namespace WordPad.Controllers
             else if(stringBuilder.Length > 0 )
             {
                 string newText = stringBuilder.ToString().Substring(0, stringBuilder.Length - 1);
-                returnedText = source.Replace(joinedRows, newText);
+                returnedText = Replace(source, joinedRows, newText, charsFromStart);
             }
 
             return returnedText;
+        }
+
+        private string Replace(string source, string whatToReplace, string howToReplace, int startIndex)
+        {
+            StringBuilder stringBuilder = new StringBuilder(source);
+
+            int index = source.IndexOf(whatToReplace, startIndex);
+
+            stringBuilder.Remove(index, whatToReplace.Length);
+            stringBuilder.Insert(index, howToReplace);
+
+            return stringBuilder.ToString();
         }
 
         private string GetDefaultFolderPath() => Environment

@@ -126,13 +126,13 @@ namespace WordPad
 
             string selectedText = rtbTesto.SelectedText.Trim();
 
-            
             try
             {
                 string[] righe = selectedText == "" ?
-                new string[] { rtbTesto.Lines[lineIndex] } :
-                selectedText.Split('\n');
-                text = _wordPadController.getNumberedListFormattedText(rtbTesto.Text, righe);
+                    new string[] { rtbTesto.Lines[lineIndex] } :
+                    selectedText.Split('\n');
+
+                text = _wordPadController.getNumberedListFormattedText(rtbTesto.Text, righe, rtbTesto.GetFirstCharIndexFromLine(lineIndex));
             }
             catch (Exception)
             {
