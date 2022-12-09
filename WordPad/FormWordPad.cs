@@ -15,9 +15,7 @@ namespace WordPad
 {
     public partial class FormWordPad : Form
     {
-
         private const int LIST_INDENTATION = 10;
-
 
         private readonly WordPadController _wordPadController;
         private readonly clsStampa _printer;
@@ -81,20 +79,27 @@ namespace WordPad
 
         private void ResearchHandler()
         {
-            string searchedText = cercaToolStripTextBox.Text.ToLower();
+            string searchedText = cercaToolStripTextBox.Text.Trim().ToLower();
+
+            if (searchedText == "")
+            {
+                return;
+            }
+
             string whereToSearch = Regex.Replace(rtbTesto.Text, @"\W", " ").ToLower();
             int startIndex = 0;
 
             IEnumerable<string> matchingWords = whereToSearch
                 .Split(' ')
-                .Where(word => word == searchedText);
+                .Where(word => word.Contains(searchedText));
 
             foreach (string word in matchingWords)
             {
-                int wordIndex = rtbTesto.Text.IndexOf(word, startIndex);
+                int len = rtbTesto.Text.Length;
+                int wordIndex = whereToSearch.IndexOf(word, startIndex);
 
                 rtbTesto.Select(wordIndex, word.Length);
-                rtbTesto.SelectionColor = Color.Red;
+                rtbTesto.SelectionBackColor = Color.Yellow;
 
                 startIndex = wordIndex + word.Length;
             }
@@ -210,7 +215,6 @@ namespace WordPad
 
         private void annullaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Undo();
 
-
         private void ripristinaToolStripMenuItem_Click(object sender, EventArgs e) => rtbTesto.Redo();
 
         private void coloreTestoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,12 +238,8 @@ namespace WordPad
             rtbTesto.SelectionBullet = !rtbTesto.SelectionBullet;
         }
 
-        private void elencoNumeratoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO
-            NumberedListHandler();
-        }
-        
+        private void elencoNumeratoToolStripMenuItem_Click(object sender, EventArgs e) => NumberedListHandler();
+
         private void esciToolStripMenuItem_Click(object sender, EventArgs e) => this.Close();
 
         private void FormWordPad_FormClosing(object sender, FormClosingEventArgs e)
@@ -255,9 +255,9 @@ namespace WordPad
 
         private void rimpiazzaToolStripMenuItem_Click(object sender, EventArgs e) => ReplaceHandler();
 
-        private void stampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Stampa(rtbTesto.Text, null);
+        private void stampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Stampa(rtbTesto.Text, rtbTesto.Font);
 
-        private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Anteprima(rtbTesto.Text, null);
+        private void anteprimadistampaToolStripMenuItem_Click(object sender, EventArgs e) => _printer.Anteprima(rtbTesto.Text, rtbTesto.Font);
 
         private void rtbTesto_KeyUp(object sender, KeyEventArgs e) => KeyPressHandler(e.KeyCode);
 
@@ -268,6 +268,12 @@ namespace WordPad
                 rtbTesto.Paste();
                 Clipboard.Clear();
             }
+        }
+
+        private void pulisciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbTesto.SelectAll();
+            rtbTesto.SelectionBackColor = Color.White;
         }
     }
 }

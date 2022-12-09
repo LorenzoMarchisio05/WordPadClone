@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.Threading;
 using System.Windows.Forms;
@@ -50,6 +51,13 @@ namespace WordPad
             // imposto parametri di default
             initDefaultParameters();
 
+            _printDocument.PrintPage += printDocument_printPage;
+
+        }
+
+        private void printDocument_printPage(object sender, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(_userText, _userFont, Brushes.Black, 20, 20);
         }
 
         public void ImpostaPagina()
@@ -77,8 +85,10 @@ namespace WordPad
             _userFont = font ?? DefaultFont;
 
             // L'utente può decidere se stampare o annullare
-             _printDocument.Print();
-            
+            if(_printPreviewDialog.ShowDialog() == DialogResult.OK)
+            {
+                _printDocument.Print();
+            }
         }
 
 

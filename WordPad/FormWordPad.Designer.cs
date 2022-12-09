@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWordPad));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.rtbTesto = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,6 +60,7 @@
             this.strumentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elencoPuntatoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elencoNumeratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.immagineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.cercaToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.cercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,15 +70,9 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.informazionisuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.immagineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pulisciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // rtbTesto
             // 
@@ -336,6 +329,7 @@
             this.toolStripSeparator8,
             this.cercaToolStripTextBox,
             this.cercaToolStripMenuItem,
+            this.pulisciToolStripMenuItem,
             this.toolStripSeparator9,
             this.rimpiazzaToolStripTextBox,
             this.rimpiazzaToolStripMenuItem});
@@ -356,6 +350,13 @@
             this.elencoNumeratoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.elencoNumeratoToolStripMenuItem.Text = "Elenco Numerato";
             this.elencoNumeratoToolStripMenuItem.Click += new System.EventHandler(this.elencoNumeratoToolStripMenuItem_Click);
+            // 
+            // immagineToolStripMenuItem
+            // 
+            this.immagineToolStripMenuItem.Name = "immagineToolStripMenuItem";
+            this.immagineToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.immagineToolStripMenuItem.Text = "Immagine";
+            this.immagineToolStripMenuItem.Click += new System.EventHandler(this.immagineToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
@@ -416,12 +417,12 @@
             this.informazionisuToolStripMenuItem.Text = "&Informazioni su...";
             this.informazionisuToolStripMenuItem.Click += new System.EventHandler(this.informazionisuToolStripMenuItem_Click);
             // 
-            // immagineToolStripMenuItem
+            // pulisciToolStripMenuItem
             // 
-            this.immagineToolStripMenuItem.Name = "immagineToolStripMenuItem";
-            this.immagineToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.immagineToolStripMenuItem.Text = "Immagine";
-            this.immagineToolStripMenuItem.Click += new System.EventHandler(this.immagineToolStripMenuItem_Click);
+            this.pulisciToolStripMenuItem.Name = "pulisciToolStripMenuItem";
+            this.pulisciToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pulisciToolStripMenuItem.Text = "Pulisci selezione";
+            this.pulisciToolStripMenuItem.Click += new System.EventHandler(this.pulisciToolStripMenuItem_Click);
             // 
             // FormWordPad
             // 
@@ -443,8 +444,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.RichTextBox rtbTesto;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -486,6 +485,7 @@
         private System.Windows.Forms.ToolStripMenuItem rimpiazzaToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox rimpiazzaToolStripTextBox;
         private System.Windows.Forms.ToolStripMenuItem immagineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pulisciToolStripMenuItem;
     }
 }
 
