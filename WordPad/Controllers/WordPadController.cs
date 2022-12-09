@@ -144,10 +144,10 @@ namespace WordPad.Controllers
 
             int index = source.IndexOf(whatToReplace, startIndex);
 
-            stringBuilder.Remove(index, whatToReplace.Length);
-            stringBuilder.Insert(index, howToReplace);
-
-            return stringBuilder.ToString();
+            return stringBuilder
+                .Remove(index, whatToReplace.Length)
+                .Insert(index, howToReplace)
+                .ToString();
         }
 
         private string GetDefaultFolderPath() => Environment
