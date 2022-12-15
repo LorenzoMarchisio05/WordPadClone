@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,6 +27,28 @@ namespace WordPad
             
             _wordPadController = new WordPadController();
             _printer = new clsStampa();
+            _printer.printer_PrintEvent = new PrintPageEventHandler(printer_PrintPage);
+        }
+
+        private void printer_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            const int DEFAULT_X_OFFSET = 20;
+
+            int x = DEFAULT_X_OFFSET,
+                y = 20;
+            for(int i = 0; i < rtbTesto.TextLength; i++)
+            {
+                rtbTesto.Select(i, 1);
+                e.Graphics.DrawString(rtbTesto.SelectedText, rtbTesto.SelectionFont, new SolidBrush(rtbTesto.SelectionColor), x, y);
+                Graphics graphics = rtbTesto.CreateGraphics();
+                Size size = TextRenderer.MeasureText(graphics, rtbTesto.SelectedText, rtbTesto.SelectionFont, new Size(0, 0), TextFormatFlags.NoPadding);
+                x += size.Width;
+                if(rtbTesto.SelectedText == "\n")
+                {
+                    x = DEFAULT_X_OFFSET;
+                    y += size.Height;
+                }
+            }
         }
 
         private void FileNameChangedHandler(string fileName)

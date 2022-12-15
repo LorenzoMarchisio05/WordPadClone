@@ -30,6 +30,10 @@ namespace WordPad
 
         private readonly PrintPreviewDialog _printPreviewDialog;
 
+        public PrintPageEventHandler printer_PrintEvent
+        {
+            set => _printDocument.PrintPage += value;
+        }
 
         // user settings
         private string _userText;
@@ -51,13 +55,7 @@ namespace WordPad
             // imposto parametri di default
             initDefaultParameters();
 
-            _printDocument.PrintPage += printDocument_printPage;
 
-        }
-
-        private void printDocument_printPage(object sender, PrintPageEventArgs e)
-        {
-            e.Graphics.DrawString(_userText, _userFont, Brushes.Black, 20, 20);
         }
 
         public void ImpostaPagina()
